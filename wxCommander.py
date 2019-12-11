@@ -14,6 +14,7 @@ try:
 	import wx
 	import wx.lib.mixins.listctrl  as  listmix
 except ImportError:
+	"""
 	try:
 		os.system('python3 -m pip install --proxy 172.31.0.14:6588 wxPython')
 	except:
@@ -25,6 +26,9 @@ except ImportError:
 
 	import wx
 	import wx.lib.mixins.listctrl  as  listmix
+	"""
+	print('Fail with import, exit')
+	exit()
 
 
 class ProListCtrl(wx.ListCtrl, listmix.ListCtrlAutoWidthMixin, listmix.ColumnSorterMixin): #listmix.ListRowHighlighter
@@ -625,12 +629,12 @@ class MyPanel(wx.Panel):
 						indice += 1
 					else:
 						continue
-
-				if self.__listaFiltrada[modo - 1] and not file.endswith('.py'):
-					#print(file)
-					continue
-				objetoF.itemDataMap[indice] = [file,horaO]
-				indice += 1
+				else:
+					if self.__listaFiltrada[modo - 1] and not file.endswith('.py'):
+						#print(file)
+						continue
+					objetoF.itemDataMap[indice] = [file,horaO]
+					indice += 1
 			break
 
 		#print(objetoF.itemDataMap)
